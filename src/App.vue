@@ -7,11 +7,11 @@
       class="flex bg-gray-300 dark:bg-gray-700 bg-opacity-50 rounded-full cursor-pointer ring-2 ring-current"
       @click="changeMode"
     >
-      <div class="mode-light m-1">
+      <div class="m-0.5">
         {{ mode === 'light' ? '☀' : '&nbsp;&nbsp;&nbsp;&nbsp;' }}
       </div>
 
-      <div class="mode-dark m-1">
+      <div class="m-0.5">
         {{ mode === 'dark' ? '🌙' : '&nbsp;&nbsp;&nbsp;&nbsp;' }}
       </div>
     </span>
