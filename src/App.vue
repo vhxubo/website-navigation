@@ -20,6 +20,11 @@
     <Board :board="item" class="m-4" />
   </template>
   <footer class="text-center py-4">
+    <div class="text-sm mb-2">
+      UpdateTime:
+      {{ urlsData.updateTime }}
+      From: {{ urlsData.author }}
+    </div>
     Create by <a href="https://github.com/vhxubo">vhxubo</a> ❤️
   </footer>
   <transition name="fade">
@@ -45,7 +50,7 @@ export default defineComponent({
   },
   setup() {
     // 不能使用let，欸，不知道为啥有人会用let
-    const urlsData = reactive({ list: [] })
+    const urlsData = reactive({ list: [], updateTime: '', author: '' })
     const api = 'https://cdn.jsdelivr.net/gh/vhxubo/websites/urls.json'
 
     const show = ref<Boolean>(false)
@@ -72,6 +77,8 @@ export default defineComponent({
 
       const { data } = await Axios.get(api)
       urlsData.list = data.list
+      urlsData.updateTime = data.updateTime
+      urlsData.author = data.author
       console.log(urlsData)
 
       if (
