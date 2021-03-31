@@ -1,12 +1,7 @@
 <template>
-  <Board :board="board" class="m-4" />
-  <Board :board="board" class="m-4" />
-  <Board :board="board" class="m-4" />
-  <Board :board="board" class="m-4" />
-  <Board :board="board" class="m-4" />
-  <Board :board="board" class="m-4" />
-  <Board :board="board" class="m-4" />
-  <Board :board="board" class="m-4" />
+  <template v-for="item in urlsData?.list" :key="item.label">
+    <Board :board="item" class="m-4" />
+  </template>
   <footer class="text-center py-4">
     Create by <a href="https://github.com/vhxubo">vhxubo</a> ❤️
   </footer>
@@ -24,6 +19,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, onMounted, onUnmounted } from 'vue'
 import Board from './components/Board.vue'
+import Axios from 'axios'
 
 export default defineComponent({
   name: 'App',
@@ -31,31 +27,9 @@ export default defineComponent({
     Board,
   },
   setup() {
-    const board = reactive({
-      label: '校内网站',
-      items: [
-        { url: 'http://www.baicu.com', name: '教务处' },
-        { url: 'http://www.baicu.com', name: '课程表' },
-        { url: 'http://www.baicu.com', name: '慕课网站' },
-        { url: 'http://www.baicu.com', name: '知网' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-        { url: 'http://www.baicu.com', name: 'baidu' },
-      ],
-    })
+    // 不能使用let，欸，不知道为啥有人会用let
+    const urlsData = reactive({ list: [] })
+    const api = 'https://cdn.jsdelivr.net/gh/vhxubo/websites/urls.json'
 
     const show = ref<Boolean>(false)
     const toTop = () => {
@@ -73,16 +47,20 @@ export default defineComponent({
       }
     }
 
-    onMounted(() => {
+    onMounted(async () => {
       // 监听页面滚动事件，why need true？
       window.addEventListener('scroll', handleScroll, true)
+
+      const { data } = await Axios.get(api)
+      urlsData.list = data.list
+      console.log(urlsData)
     })
 
     onUnmounted(() => {
       window.removeEventListener('scroll', handleScroll)
     })
 
-    return { board, toTop, show }
+    return { toTop, show, urlsData }
   },
 })
 </script>
