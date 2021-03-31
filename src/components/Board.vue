@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white max-w-screen-lg mx-auto p-3 border-2 rounded-lg border-gray-100"
+    class="bg-white max-w-screen-lg lg:mx-auto p-3 border-2 rounded-lg border-gray-100 md:mx-2"
     :id="board?.label"
   >
     <p class="text-lg pb-2 pl-2">
