@@ -1,4 +1,21 @@
 <template>
+  <header
+    class="select-none flex h-16 bg-white dark:bg-gray-800 px-8 justify-between items-center border-gray-200 dark:border-gray-900 border-b text-gray-700 dark:text-gray-300"
+  >
+    <div class="text-2xl font-semibold tracking-wide">🐚网址导航</div>
+    <span
+      class="flex bg-gray-300 dark:bg-gray-700 bg-opacity-50 rounded-full cursor-pointer ring-2 ring-current"
+      @click="changeMode"
+    >
+      <div class="mode-light m-1">
+        {{ mode === 'light' ? '☀' : '&nbsp;&nbsp;&nbsp;&nbsp;' }}
+      </div>
+
+      <div class="mode-dark m-1">
+        {{ mode === 'dark' ? '🌙' : '&nbsp;&nbsp;&nbsp;&nbsp;' }}
+      </div>
+    </span>
+  </header>
   <template v-for="item in urlsData?.list" :key="item.label">
     <Board :board="item" class="m-4" />
   </template>
@@ -47,6 +64,8 @@ export default defineComponent({
       }
     }
 
+    const mode = ref<string>('light')
+
     onMounted(async () => {
       // 监听页面滚动事件，why need true？
       window.addEventListener('scroll', handleScroll, true)
@@ -54,13 +73,37 @@ export default defineComponent({
       const { data } = await Axios.get(api)
       urlsData.list = data.list
       console.log(urlsData)
+
+      if (
+        localStorage.theme === 'dark' ||
+        (!('theme' in localStorage) &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+        mode.value = 'dark'
+        document.querySelector('html')!.classList.add('dark')
+      } else {
+        mode.value = 'light'
+        document.querySelector('html')!.classList.remove('dark')
+      }
     })
 
     onUnmounted(() => {
       window.removeEventListener('scroll', handleScroll)
     })
 
-    return { toTop, show, urlsData }
+    const changeMode = () => {
+      if (localStorage.theme == 'dark') {
+        localStorage.theme = 'light'
+        mode.value = 'light'
+        document.querySelector('html')!.classList.remove('dark')
+      } else {
+        localStorage.theme = 'dark'
+        mode.value = 'dark'
+        document.querySelector('html')!.classList.add('dark')
+      }
+    }
+
+    return { toTop, show, urlsData, changeMode, mode }
   },
 })
 </script>
@@ -68,12 +111,6 @@ export default defineComponent({
 <style>
 * {
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  --tw-bg-opacity: 1;
-  background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
 
 .fade-enter-active,
