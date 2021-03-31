@@ -16,7 +16,6 @@
 - Vite
 - tailwindcss
 
-
 ### 功能
 
 - 可配合[vhxubo/websites](https://github.com/vhxubo/websites)使用，使用GitHub Issues作为后端
@@ -34,7 +33,8 @@ npm build
 
 ## TODO
 
-
+- 优化一键返回顶部动画
+- 优化黑暗模式
 
 ## 数据定义
 
