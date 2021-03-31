@@ -32,7 +32,7 @@ export default defineComponent({
   },
   setup() {
     const board = reactive({
-      title: '校内网站',
+      label: '校内网站',
       items: [
         { url: 'http://www.baicu.com', name: '教务处' },
         { url: 'http://www.baicu.com', name: '课程表' },
