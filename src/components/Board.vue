@@ -7,6 +7,7 @@
       {{ board?.title }}
     </p>
     <div class="flex flex-wrap flex-shrink m-auto clear-both">
+      <!-- 在vue2中可以同时使用v-for和.native处理事件，在vue3中取消了原生后缀，可以将v-for移植到template中-->
       <template v-for="item in board?.items" :key="item.title">
         <div
           class="shadow rounded-md px-6 py-3 m-2 cursor-pointer select-none hover:shadow-md"
@@ -30,7 +31,6 @@ export default defineComponent({
   setup() {
     const openUrl = (url: string) => {
       window.open(url)
-      console.log(url)
     }
 
     return { openUrl }
