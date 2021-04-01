@@ -70,7 +70,7 @@ export default defineComponent({
   setup() {
     // 不能使用let，欸，不知道为啥有人会用let
     const urlsData = reactive({ list: [], updateTime: '', author: '' })
-    const api = 'https://cdn.jsdelivr.net/gh/vhxubo/websites/urls.json'
+    const api = 'https://cdn.jsdelivr.net/gh/vhxubo/websites/api/urls.json'
 
     const show = ref<Boolean>(false)
     const toTop = () => {
