@@ -31,6 +31,17 @@ npm install
 npm build
 ```
 
+因为我在`vhxubo.github.io`上部署过GitHub Page，因此我在[build.yml](github\workflows\build.yml)中对html内的文件路径进行了修改，否则不能正常的访问页面
+
+如果你在`[username].github.io`下部署，则需要将[build.yml](github\workflows\build.yml)中的以下代码删除
+
+```yml
+- name: Fix path
+  run: |
+    sed -i 's/\/assets\//\/website-navigation\/assets\//g' dist/index.html
+    sed -i 's/\/favicon.ico/\/website-navigation\/favicon.ico/g' dist/index.html
+```
+
 ## TODO
 
 - 优化一键返回顶部动画
