@@ -3,18 +3,37 @@
     class="select-none flex h-16 bg-white dark:bg-gray-800 px-8 justify-between items-center border-gray-200 dark:border-gray-900 border-b text-gray-700 dark:text-gray-300"
   >
     <div class="text-2xl font-semibold tracking-wide">🐚网址导航</div>
-    <span
-      class="flex bg-gray-300 dark:bg-gray-700 bg-opacity-50 rounded-full cursor-pointer ring-2 ring-current"
-      @click="changeMode"
-    >
-      <div class="m-0.5">
-        {{ mode === 'light' ? '☀' : '&nbsp;&nbsp;&nbsp;&nbsp;' }}
-      </div>
+    <div class="flex items-center">
+      <span>
+        <a href="http://github.com/vhxubo/website-navigation">
+          <!-- 在这里使用v-show代表着第一次就将两个图标都进行加载，避免了使用v-if或者在src进行赋值造成的图片切换不及时的问题 -->
+          <img
+            v-show="mode === 'dark'"
+            width="32"
+            src="src/assets/GitHub-Mark-Light-32px.png"
+            alt="github"
+          />
+          <img
+            v-show="mode === 'light'"
+            width="32"
+            src="src/assets/GitHub-Mark-32px.png"
+            alt="github"
+          />
+        </a>
+      </span>
+      <span
+        class="flex bg-gray-300 dark:bg-gray-700 bg-opacity-50 rounded-full cursor-pointer ring-2 ring-current ml-4"
+        @click="changeMode"
+      >
+        <div class="m-0.5">
+          {{ mode === 'light' ? '☀' : '&nbsp;&nbsp;&nbsp;&nbsp;' }}
+        </div>
 
-      <div class="m-0.5">
-        {{ mode === 'dark' ? '🌙' : '&nbsp;&nbsp;&nbsp;&nbsp;' }}
-      </div>
-    </span>
+        <div class="m-0.5">
+          {{ mode === 'dark' ? '🌙' : '&nbsp;&nbsp;&nbsp;&nbsp;' }}
+        </div>
+      </span>
+    </div>
   </header>
   <template v-for="item in urlsData?.list" :key="item.label">
     <Board :board="item" class="m-4" />

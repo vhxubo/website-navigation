@@ -3,7 +3,7 @@
 > 构建属于自己的网址导航
 
 见过很多类型的导航，总觉得数据的定义与修改实在是过于麻烦，或者是需要后端的支持。
-该项目通过结合GitHub Action和Issues，将数据库的后端移植到了GitHub上面，并通过[jsDelivr](https://www.jsdelivr.com/)加速对GitHub的访问。
+该项目通过结合GitHub Action和Issues，将数据库的后端移植到了GitHub上面，并通过[jsDelivr](https://www.jsdelivr.com/)加速对GitHub的访问（jsDelivr可能会有缓存）。
 
 项目后端地址：[vhxubo/websites](https://github.com/vhxubo/websites)
 
