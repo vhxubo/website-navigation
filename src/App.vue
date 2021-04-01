@@ -10,13 +10,13 @@
           <img
             v-show="mode === 'dark'"
             width="32"
-            src="src/assets/GitHub-Mark-Light-32px.png"
+            src="/src/assets/GitHub-Mark-Light-32px.png"
             alt="github"
           />
           <img
             v-show="mode === 'light'"
             width="32"
-            src="src/assets/GitHub-Mark-32px.png"
+            src="/src/assets/GitHub-Mark-32px.png"
             alt="github"
           />
         </a>
