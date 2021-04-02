@@ -24,7 +24,7 @@
         </a>
       </span>
       <span
-        class="flex bg-gray-300 dark:bg-gray-700 bg-opacity-50 rounded-full cursor-pointer ring-2 ring-current ml-4 text-sm md:text-base"
+        class="flex bg-gray-300 dark:bg-gray-700 bg-opacity-50 rounded-full cursor-pointer ring-2 ring-current ml-2 md:ml-4 text-xs md:text-base"
         @click="changeMode"
       >
         <div class="m-0.5">
