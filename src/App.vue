@@ -40,8 +40,8 @@
   <template v-for="item in urlsData?.list" :key="item.label">
     <Board :board="item" />
   </template>
-  <footer class="text-center py-4">
-    <div class="text-sm mb-2">
+  <footer class="text-center py-4 text-xs md:text-sm">
+    <div class="mb-1 md:mb-2">
       UpdateTime:
       {{ urlsData.updateTime }}
       From: {{ urlsData.author }}
