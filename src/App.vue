@@ -162,23 +162,23 @@ export default defineComponent({
               .data
           )
       }
-
-      if (
-        localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) &&
-          window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ) {
-        mode.value = 'dark'
-        document.querySelector('html')!.classList.add('dark')
-      } else {
-        mode.value = 'light'
-        document.querySelector('html')!.classList.remove('dark')
-      }
     })
 
     onUnmounted(() => {
       window.removeEventListener('scroll', handleScroll)
     })
+
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      mode.value = 'dark'
+      document.querySelector('html')!.classList.add('dark')
+    } else {
+      mode.value = 'light'
+      document.querySelector('html')!.classList.remove('dark')
+    }
 
     const changeMode = () => {
       if (localStorage.theme == 'dark') {
