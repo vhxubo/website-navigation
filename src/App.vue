@@ -62,7 +62,18 @@
 <script lang="ts">
 import { defineComponent, reactive, ref, onMounted, onUnmounted } from 'vue'
 import Board from './components/Board.vue'
-import Axios from 'axios'
+import Axios, { AxiosResponse } from 'axios'
+
+interface UrlsData {
+  list: Array<object>
+  updateTime: string
+  author?: string
+  github?: string
+}
+
+const isFilled = <T extends {}>(
+  v: PromiseSettledResult<T>
+): v is PromiseFulfilledResult<T> => v.status === 'fulfilled'
 
 export default defineComponent({
   name: 'App',
@@ -71,11 +82,33 @@ export default defineComponent({
   },
   setup() {
     // 不能使用let，欸，不知道为啥有人会用let
-    const urlsData = reactive({ list: [], updateTime: '', author: '' })
-    let api =
-      'https://raw.githubusercontent.com/vhxubo/websites/master/api/urls.json'
-    // 增加时间戳后缀，避免静态接口缓存
-    api += '?t=' + new Date().getTime()
+    const urlsData = reactive<UrlsData>({
+      list: [],
+      updateTime: '',
+      author: '',
+    })
+
+    const setData = ({ list, updateTime, author }: UrlsData) => {
+      urlsData.list = list
+      urlsData.updateTime = updateTime
+      urlsData.author = author
+      console.log(urlsData)
+    }
+
+    // 仓库名
+    const repository = 'vhxubo/websites'
+    const time = new Date().getTime()
+    const promises: Promise<AxiosResponse<any>>[] = []
+    promises.push(
+      Axios.get(
+        `https://raw.githubusercontent.com/${repository}/master/api/urls.json?t=${time}`
+      )
+    )
+    promises.push(
+      Axios.get(
+        `https://cdn.jsdelivr.net/gh/${repository}/api/urls.json?t=${time}`
+      )
+    )
 
     const show = ref<Boolean>(false)
     const toTop = () => {
@@ -99,11 +132,36 @@ export default defineComponent({
       // 监听页面滚动事件，why need true？
       window.addEventListener('scroll', handleScroll, true)
 
-      const { data } = await Axios.get(api)
-      urlsData.list = data.list
-      urlsData.updateTime = data.updateTime
-      urlsData.author = data.author
-      console.log(urlsData)
+      const results = await Promise.allSettled(promises)
+
+      const successRes = results.filter(p => p.status === 'fulfilled')
+
+      // https://stackoverflow.com/questions/63119998/unable-to-get-the-value-from-promise-allsettled-in-nodejs-12-with-typescript-3-8
+
+      switch (successRes.length) {
+        case 0:
+          alert('接口访问错误！请检查您的网络')
+          break
+        case 1:
+          setData(
+            (successRes[0] as PromiseFulfilledResult<AxiosResponse<any>>).value
+              .data
+          )
+          break
+        default:
+          // 根据updateTime逆序排列
+          const sortRes = successRes.sort((a, b) => {
+            return (
+              Number(new Date(isFilled(b) ? b.value.data.updateTime : 0)) -
+              Number(new Date(isFilled(a) ? a.value.data.updateTime : 0))
+            )
+          })
+          // 将最新更新的数据进行分配
+          setData(
+            (sortRes[0] as PromiseFulfilledResult<AxiosResponse<any>>).value
+              .data
+          )
+      }
 
       if (
         localStorage.theme === 'dark' ||

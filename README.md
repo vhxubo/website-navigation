@@ -3,44 +3,32 @@
 > 构建属于自己的网址导航
 
 见过很多类型的导航，总觉得数据的定义与修改实在是过于麻烦，或者是需要后端的支持
-该项目通过结合GitHub Action和Issues，将数据库的后端移植到了GitHub上面
-
-~~可以选择通过[jsDelivr](https://www.jsdelivr.com/)加速对GitHub的访问（jsDelivr可能会有缓存）~~
-
-PS: 在网络状况良好下，依旧建议使用GitHub RAW访问
-
-将api地址替换为对应的接口便可，配套接口如下：
+该项目通过结合GitHub Action和Issues，将整个导航都移植到了GitHub上面
 
 项目后端地址：[vhxubo/websites](https://github.com/vhxubo/websites)
 
-## 介绍
-
-### 技术栈
+## 技术栈
 
 - Vue3
 - TypeScript
 - Vite
 - tailwindcss
 
-### 功能
+## 功能
 
-- 可配合[vhxubo/websites](https://github.com/vhxubo/websites)使用，使用GitHub Issues作为后端
+- 可配合[vhxubo/websites](https://github.com/vhxubo/websites)使用GitHub Issues作为后端
 - 黑暗模式
 - 一键返回顶部
+- 响应式设计
 
-## 如何构建
+## 如何使用
 
-建议将`App.vue`中的api地址修改为自己的
+1. fork [vhxubo/website-navigation](https://github.com/vhxubo/website-navigation)和[vhxubo/websites](https://github.com/vhxubo/websites)
+2. 配置[vhxubo/websites](https://github.com/vhxubo/websites)，即新建符合要求的issues
+3. 修改`App.vue`下的`repository`变量 `const repository = '[username]/websites'`
+4. 配置GitHub Page
 
-```bash
-yarn
-yarn dev
-yarn build
-```
-
-因为我在`vhxubo.github.io`上部署过GitHub Page，因此我在[build.yml](github\workflows\build.yml)中对html内的文件路径进行了修改，否则不能正常的访问页面
-
-如果你在`[username].github.io`下部署，则需要将[build.yml](github\workflows\build.yml)中的以下代码删除
+如果你在`[username].github.io`下部署，需要将[build.yml](github\workflows\build.yml)中的以下代码删除，否则不能正常显示页面
 
 ```yml
 - name: Fix path
