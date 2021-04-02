@@ -50,7 +50,7 @@
   </footer>
   <transition name="fade">
     <button
-      class="z-10 fixed bottom-4 right-4 rounded-full text-2xl text-white"
+      class="z-10 fixed bottom-4 right-4 rounded-full text-4xl text-white"
       v-if="show"
       @click="toTop"
     >
