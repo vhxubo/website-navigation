@@ -1,9 +1,9 @@
 <template>
   <div
-    class="bg-white dark:bg-gray-800 max-w-screen-lg lg:mx-auto p-3 border-2 rounded-lg border-gray-100 dark:border-gray-800 md:mx-2"
+    class="bg-white dark:bg-gray-800 max-w-screen-lg p-2 md:p-3 board md:border-2 rounded-lg border-gray-100 dark:border-gray-800 mx-1.5 md:mx-auto my-2.5 md:my-4"
     :id="board?.label"
   >
-    <p class="text-lg pb-2 pl-2">
+    <p class="text-base md:text-lg pb-1 md:pb-2 pl-1 md:pl-2">
       {{ board?.label }}
     </p>
     <div class="flex flex-wrap flex-shrink m-auto clear-both">

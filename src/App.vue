@@ -1,6 +1,6 @@
 <template>
   <header
-    class="select-none flex h-12 md:h-16 bg-white dark:bg-gray-800 px-4 md:px-8 justify-between items-center border-gray-200 dark:border-gray-900 border-b text-gray-700 dark:text-gray-300"
+    class="select-none flex h-12 md:h-16 bg-white dark:bg-gray-800 px-2 md:px-8 justify-between items-center border-gray-200 dark:border-gray-900 border-b text-gray-700 dark:text-gray-300"
   >
     <div class="text-lg md:text-2xl font-semibold tracking-wide">
       🐚网址导航
@@ -38,7 +38,7 @@
     </div>
   </header>
   <template v-for="item in urlsData?.list" :key="item.label">
-    <Board :board="item" class="m-4" />
+    <Board :board="item" />
   </template>
   <footer class="text-center py-4">
     <div class="text-sm mb-2">
