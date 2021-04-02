@@ -27,8 +27,9 @@
 建议将`App.vue`中的api地址修改为自己的
 
 ```bash
-npm install
-npm build
+yarn
+yarn dev
+yarn build
 ```
 
 因为我在`vhxubo.github.io`上部署过GitHub Page，因此我在[build.yml](github\workflows\build.yml)中对html内的文件路径进行了修改，否则不能正常的访问页面
