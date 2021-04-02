@@ -72,7 +72,9 @@ export default defineComponent({
   setup() {
     // 不能使用let，欸，不知道为啥有人会用let
     const urlsData = reactive({ list: [], updateTime: '', author: '' })
-    const api = 'https://cdn.jsdelivr.net/gh/vhxubo/websites/api/urls.json'
+    let api = 'https://cdn.jsdelivr.net/gh/vhxubo/websites/api/urls.json'
+    // 增加时间戳后缀，避免静态接口缓存
+    api += '?t=' + new Date().getTime()
 
     const show = ref<Boolean>(false)
     const toTop = () => {
