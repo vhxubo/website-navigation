@@ -62,7 +62,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, onMounted, onUnmounted } from 'vue'
+import {
+  defineComponent,
+  reactive,
+  ref,
+  onMounted,
+  onUnmounted,
+  watch,
+} from 'vue'
 import Board from './components/Board.vue'
 import Axios, { AxiosResponse } from 'axios'
 
@@ -130,7 +137,41 @@ export default defineComponent({
       }
     }
 
-    const mode = ref<string>('light')
+    const mode = ref<'dark' | 'light'>('light')
+    const setMode = (mode: 'dark' | 'light') => {
+      if (mode == 'dark') {
+        const metaDark = document.createElement('meta')
+        metaDark.setAttribute('name', 'theme-color')
+        metaDark.setAttribute('content', '#1F2937')
+        document.querySelector('head')!.appendChild(metaDark)
+        document.querySelector('html')!.classList.add('dark')
+      } else {
+        document.querySelector('meta[name="theme-color"]')?.remove()
+        document.querySelector('html')!.classList.remove('dark')
+      }
+    }
+
+    watch(mode, () => {
+      setMode(mode.value)
+    })
+
+    if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches)
+    ) {
+      mode.value = 'dark'
+    } else {
+      mode.value = 'light'
+    }
+
+    const changeMode = () => {
+      if (localStorage.theme == 'dark') {
+        localStorage.theme = mode.value = 'light'
+      } else {
+        localStorage.theme = mode.value = 'dark'
+      }
+    }
 
     onMounted(async () => {
       // 监听页面滚动事件，why need true？
@@ -171,30 +212,6 @@ export default defineComponent({
     onUnmounted(() => {
       window.removeEventListener('scroll', handleScroll)
     })
-
-    if (
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches)
-    ) {
-      mode.value = 'dark'
-      document.querySelector('html')!.classList.add('dark')
-    } else {
-      mode.value = 'light'
-      document.querySelector('html')!.classList.remove('dark')
-    }
-
-    const changeMode = () => {
-      if (localStorage.theme == 'dark') {
-        localStorage.theme = 'light'
-        mode.value = 'light'
-        document.querySelector('html')!.classList.remove('dark')
-      } else {
-        localStorage.theme = 'dark'
-        mode.value = 'dark'
-        document.querySelector('html')!.classList.add('dark')
-      }
-    }
 
     return { toTop, show, urlsData, changeMode, mode }
   },
