@@ -7,7 +7,7 @@
     </div>
     <div class="flex items-center">
       <span>
-        <a href="http://github.com/vhxubo/website-navigation">
+        <a href="http://github.com/vhxubo/website-navigation" target="_blank">
           <!-- 在这里使用v-show代表着第一次就将两个图标都进行加载，避免了使用v-if或者在src进行赋值造成的图片切换不及时的问题 -->
           <img
             v-show="mode === 'dark'"
@@ -48,7 +48,7 @@
         From: {{ urlsData.author }}
       </a>
     </div>
-    Create by <a href="https://github.com/vhxubo">vhxubo</a> ❤️
+    Create by <a href="https://github.com/vhxubo" target="_blank">vhxubo</a> ❤️
   </footer>
   <transition name="fade">
     <button
