@@ -42,9 +42,11 @@
   </template>
   <footer class="text-center py-4 text-xs md:text-sm">
     <div class="mb-1 md:mb-2">
-      UpdateTime:
-      {{ urlsData.updateTime }}
-      From: {{ urlsData.author }}
+      <a :href="urlsData.github" target="_blank">
+        UpdateTime:
+        {{ urlsData.updateTime }}
+        From: {{ urlsData.author }}
+      </a>
     </div>
     Create by <a href="https://github.com/vhxubo">vhxubo</a> ❤️
   </footer>
@@ -86,12 +88,14 @@ export default defineComponent({
       list: [],
       updateTime: '',
       author: '',
+      github: '',
     })
 
-    const setData = ({ list, updateTime, author }: UrlsData) => {
+    const setData = ({ list, updateTime, author, github }: UrlsData) => {
       urlsData.list = list
       urlsData.updateTime = updateTime
       urlsData.author = author
+      urlsData.github = github
       console.log(urlsData)
     }
 
