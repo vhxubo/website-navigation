@@ -3,7 +3,7 @@
     class="select-none flex h-12 md:h-16 bg-white dark:bg-gray-800 px-2 md:px-8 justify-between items-center border-gray-200 dark:border-gray-900 border-b text-gray-700 dark:text-gray-300"
   >
     <div class="text-lg md:text-2xl font-semibold tracking-wide">
-      🐚网址导航
+      <a href="#">🗃收藏夹</a>
     </div>
     <div class="flex items-center">
       <span>
