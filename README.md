@@ -49,7 +49,9 @@
 
 ## 数据定义
 
-```json
+<details>
+  <summary>查看定义</summary>
+<pre><code>
 {
   "author": "vhxubo",
   "github": "https://github.com/vhxubo/websites",
@@ -112,4 +114,5 @@
     }
   ]
 }
-```
+</code></pre>
+</details>
