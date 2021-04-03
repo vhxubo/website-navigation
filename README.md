@@ -7,6 +7,12 @@
 
 项目后端地址：[vhxubo/websites](https://github.com/vhxubo/websites)
 
+
+|  屏幕   |                    日间                     |                   夜间                    |
+| :-----: | :-----------------------------------------: | :---------------------------------------: |
+| >=768px |    ![light_md](docs/images/light_md.png)    |    ![dark_md](docs/images/dark_md.png)    |
+| <768px  | ![light_other](docs/images/light_other.jpg) | ![dark_other](docs/images/dark_other.jpg) |
+
 ## 技术栈
 
 - Vue3
