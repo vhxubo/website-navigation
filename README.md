@@ -7,7 +7,6 @@
 
 项目后端地址：[vhxubo/websites](https://github.com/vhxubo/websites)
 
-
 |  屏幕   |                    日间                     |                   夜间                    |
 | :-----: | :-----------------------------------------: | :---------------------------------------: |
 | >=768px |    ![light_md](docs/images/light_md.png)    |    ![dark_md](docs/images/dark_md.png)    |
