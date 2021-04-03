@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white dark:bg-gray-800 max-w-screen-lg p-2 md:p-3 board md:border-2 rounded-lg border-gray-100 dark:border-gray-800 mx-1.5 md:mx-auto my-2.5 md:my-4"
+    class="bg-white dark:bg-black-dark max-w-screen-lg p-2 md:p-3 board md:border-2 rounded-lg border-gray-100 dark:border-black-border mx-1.5 md:mx-auto my-2.5 md:my-4"
     :id="board?.label"
   >
     <p class="text-base md:text-lg pb-1.5 md:pb-2 pl-1.5 md:pl-2">
@@ -10,7 +10,7 @@
       <!-- 在vue2中可以同时使用v-for和.native处理事件，在vue3中取消了原生后缀，可以将v-for移植到template中-->
       <template v-for="item in board?.items" :key="item.name">
         <div
-          class="shadow rounded-md px-4 md:px-6 py-2 md:py-3 m-1.5 md:m-2 cursor-pointer select-none hover:shadow-md dark:bg-gray-700 text-sm md:text-base"
+          class="shadow rounded-md px-4 md:px-6 py-2 md:py-3 m-1.5 md:m-2 cursor-pointer select-none hover:shadow-md dark:bg-gray-dark text-sm md:text-base"
           @click="openUrl(item.url)"
           :title="item.description ? item.description : item.name"
         >

@@ -1,6 +1,6 @@
 <template>
   <header
-    class="select-none flex h-12 md:h-16 bg-white dark:bg-gray-800 px-2 md:px-8 justify-between items-center border-gray-200 dark:border-gray-900 border-b text-gray-700 dark:text-gray-300"
+    class="select-none flex h-12 md:h-16 bg-white dark:bg-black-dark px-2 md:px-8 justify-between items-center border-gray-200 dark:border-black-border border-b text-gray-700 dark:text-gray-text"
   >
     <div class="text-lg md:text-2xl font-semibold tracking-wide">
       <a href="#">🗃收藏夹</a>
@@ -142,7 +142,7 @@ export default defineComponent({
       if (mode == 'dark') {
         const metaDark = document.createElement('meta')
         metaDark.setAttribute('name', 'theme-color')
-        metaDark.setAttribute('content', '#1F2937')
+        metaDark.setAttribute('content', '#141414')
         document.querySelector('head')!.appendChild(metaDark)
         document.querySelector('html')!.classList.add('dark')
       } else {
