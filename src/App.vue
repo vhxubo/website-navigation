@@ -37,6 +37,7 @@
       </span>
     </div>
   </header>
+  <Nav :items="urlsData?.list"></Nav>
   <template v-for="item in urlsData?.list" :key="item.label">
     <Board :board="item" />
   </template>
@@ -71,6 +72,7 @@ import {
   watch,
 } from 'vue'
 import Board from './components/Board.vue'
+import Nav from './components/Nav.vue'
 import Axios, { AxiosResponse } from 'axios'
 
 interface UrlsData {
@@ -88,6 +90,7 @@ export default defineComponent({
   name: 'App',
   components: {
     Board,
+    Nav,
   },
   setup() {
     // 不能使用let，欸，不知道为啥有人会用let
