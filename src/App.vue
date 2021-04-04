@@ -38,9 +38,11 @@
     </div>
   </header>
   <Nav :items="urlsData?.list"></Nav>
-  <template v-for="item in urlsData?.list" :key="item.label">
-    <Board :board="item" />
-  </template>
+  <main>
+    <template v-for="item in urlsData?.list" :key="item.label">
+      <Board :board="item" />
+    </template>
+  </main>
   <footer class="text-center py-4 text-xs md:text-sm">
     <div class="mb-1 md:mb-2">
       <a :href="urlsData.github" target="_blank">
