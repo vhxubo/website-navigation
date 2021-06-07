@@ -1,6 +1,22 @@
 <template>
   <header
-    class="select-none flex h-12 md:h-16 bg-white dark:bg-black-dark px-2 md:px-8 justify-between items-center border-gray-200 dark:border-black-border border-b text-gray-700 dark:text-gray-text"
+    class="
+      select-none
+      flex
+      h-12
+      md:h-16
+      bg-white
+      dark:bg-black-dark
+      px-2
+      md:px-8
+      justify-between
+      items-center
+      border-gray-200
+      dark:border-black-border
+      border-b
+      text-gray-700
+      dark:text-gray-text
+    "
   >
     <div class="text-lg md:text-2xl font-semibold tracking-wide">
       <a href="#">🗃收藏夹</a>
@@ -24,7 +40,19 @@
         </a>
       </span>
       <span
-        class="flex bg-gray-300 dark:bg-gray-700 bg-opacity-50 rounded-full cursor-pointer ring-2 ring-current ml-2 md:ml-4 text-xs md:text-base"
+        class="
+          flex
+          bg-gray-300
+          dark:bg-gray-700
+          bg-opacity-50
+          rounded-full
+          cursor-pointer
+          ring-2 ring-current
+          ml-2
+          md:ml-4
+          text-xs
+          md:text-base
+        "
         @click="changeMode"
       >
         <div class="m-0.5">
@@ -108,9 +136,18 @@ export default defineComponent({
       urlsData.updateTime = updateTime
       urlsData.author = author
       urlsData.github = github
+      localStorage.setItem('urlsData', JSON.stringify(urlsData))
       console.log(urlsData)
     }
 
+    onMounted(() => {
+      const urlsData = localStorage.getItem('urlsData')
+      if (urlsData) {
+        const data = JSON.parse(urlsData)
+        setData(data)
+        console.log('使用本地数据暂时填充')
+      }
+    })
     // 仓库名
     const repository = 'vhxubo/websites'
     const time = new Date().getTime()
@@ -184,7 +221,7 @@ export default defineComponent({
 
       const results = await Promise.allSettled(promises)
 
-      const successRes = results.filter(p => p.status === 'fulfilled')
+      const successRes = results.filter((p) => p.status === 'fulfilled')
 
       // https://stackoverflow.com/questions/63119998/unable-to-get-the-value-from-promise-allsettled-in-nodejs-12-with-typescript-3-8
 
